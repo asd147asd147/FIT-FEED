@@ -25,13 +25,10 @@ https://hub.docker.com/editions/community/docker-ce-desktop-windows/ 설치 및 
 Local Folder에서 clone 실행
 ```
 git clone https://github.com/asd147asd147/FIT-FEED.git
-```
-`cd fit-feed`로 Folder 변경
-다음 명령어 실행
-```
+cd fit-feed
 docker-compose up -d --build
 ```
-`localhost:3001' 접속
+`localhost:3001` 접속
 
 서버 중지 시 Docker Desktop에서 fit-feed container STOP
 
