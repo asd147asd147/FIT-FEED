@@ -10,6 +10,23 @@
 * [안현주] - Fullstack
 * [강승길] - Crawling
 
+# Requirements
+* Node.js >= v14.16.0
+* npm >= v6.14.11
+* Docker Desktop >= v20.10.2
+
+# Install
+## Node.js
+https://nodejs.org/ko/ LTS 버전을 설치.
+## Docker Desktop
+https://hub.docker.com/editions/community/docker-ce-desktop-windows/ 설치 및 Docker Hub 가입
+
+## React env.
+Local Folder에서 clone 실행
+'''
+git clone https://github.com/asd147asd147/FIT-FEED.git
+'''
+
 # Release History
 
 
