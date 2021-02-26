@@ -16,12 +16,12 @@
 * Docker Desktop >= v20.10.2
 
 # Install
-## Node.js
+### Node.js
 https://nodejs.org/ko/ LTS 버전을 설치.
-## Docker Desktop
+### Docker Desktop
 https://hub.docker.com/editions/community/docker-ce-desktop-windows/ 설치 및 Docker Hub 가입
 
-## React env.
+### React env.
 Local Folder에서 clone 실행
 ```
 git clone https://github.com/asd147asd147/FIT-FEED.git
