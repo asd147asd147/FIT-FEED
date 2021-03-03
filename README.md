@@ -20,6 +20,10 @@
 https://nodejs.org/ko/ LTS 버전을 설치.
 ### Docker Desktop
 https://hub.docker.com/editions/community/docker-ce-desktop-windows/ 설치 및 Docker Hub 가입
+### MATERIAL-UI
+```
+npm install @material-ui/core
+```
 
 ### React env.
 Local Folder에서 clone 실행
