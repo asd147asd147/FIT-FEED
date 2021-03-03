@@ -19,7 +19,7 @@
 ### Node.js
 https://nodejs.org/ko/ LTS 버전을 설치.
 ### Docker Desktop
-[![Docker Badge](https://https://img.shields.io/badge/Docker-link-blue?logo=docker)](https://hub.docker.com/editions/community/docker-ce-desktop-windows/) 설치 및 Docker Hub 가입
+[![Generic badge](https://img.shields.io/badge/Docker-link-blue.svg?logo=docker)](https://hub.docker.com/editions/community/docker-ce-desktop-windows/) 설치 및 Docker Hub 가입
 ### MATERIAL-UI
 ```
 $ npm install @material-ui/core
