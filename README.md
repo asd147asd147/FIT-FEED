@@ -30,7 +30,7 @@ docker-compose up -d --build
 ```
 `localhost:3001` 접속
 
-서버 중지 시 Docker Desktop에서 `fit-feed container STOP`
+서버 중지 시 Docker Desktop에서 fit-feed container STOP
 
 # Release History
 
