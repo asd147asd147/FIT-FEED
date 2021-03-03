@@ -16,14 +16,11 @@
 * Docker Desktop >= v20.10.2
 
 # Install
-### Node.js
-[![Generic badge](https://img.shields.io/badge/Node.js-link-green.svg?logo=Node.js)](https://nodejs.org/ko/)  
+### Node.js [![Generic badge](https://img.shields.io/badge/Node.js-link-green.svg?logo=Node.js)](https://nodejs.org/ko/)  
 LTS 버전을 설치.
-### Docker Desktop
-[![Generic badge](https://img.shields.io/badge/Docker-link-blue.svg?logo=docker)](https://hub.docker.com/editions/community/docker-ce-desktop-windows/)  
+### Docker Desktop [![Generic badge](https://img.shields.io/badge/Docker-link-blue.svg?logo=docker)](https://hub.docker.com/editions/community/docker-ce-desktop-windows/)  
 설치 및 Docker Hub 가입
-### MATERIAL-UI
-[![Generic badge](https://img.shields.io/badge/MaterialUI-link-blue.svg?logo=material-ui)](https://simpleicons.org/?q=material)  
+### MATERIAL-UI [![Generic badge](https://img.shields.io/badge/MaterialUI-link-blue.svg?logo=material-ui)](https://simpleicons.org/?q=material)  
 ```
 $ npm install @material-ui/core
 ```
