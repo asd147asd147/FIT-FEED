@@ -19,6 +19,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Link from '@material-ui/core/Link';
+import facebook from "./facebook.json";
 
 function Copyright() {
   return (
@@ -49,6 +50,13 @@ const useStyles = makeStyles((theme) => ({
     height: '100%',
     display: 'flex',
     flexDirection: 'column',
+    transition: '0.3s',
+    '&:hover':{
+      transform: 'translateY(-1%)',
+      position: 'relative',
+      top: '-10px',
+    },
+    boxShadow: "0 8px 40px -12px rgba(0,0,0,0.3)",
   },
   cardMedia: {
     paddingTop: '56.25%', // 16:9
@@ -64,8 +72,6 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: blue[500],
   },
 }));
-
-const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
 
 export default function Album() {
   const classes = useStyles();
@@ -93,20 +99,20 @@ export default function Album() {
             </Typography>
           </Container>
         </div>
-        <Container className={classes.cardGrid} maxWidth="lg">
+        <Container className={classes.cardGrid} maxWidth="xl">
           {/* End hero unit */}
           <Grid container spacing={4}>
-            {cards.map((card) => (
+            {facebook.map((info, card) => (
               <Grid item key={card} xs={12} sm={6} md={3}>
                 <Card className={classes.card}>
                     <CardHeader
                         avatar={
-                        <Avatar aria-label="recipe" className={classes.avatar}>
+                          <Avatar aria-label="recipe" className={classes.avatar}>
                             C
                         </Avatar>
                         }
                         action={
-                        <IconButton aria-label="settings">
+                          <IconButton aria-label="settings">
                             <MoreVertIcon />
                         </IconButton>
                         }
@@ -115,17 +121,15 @@ export default function Album() {
                     />
                   <CardMedia
                     className={classes.cardMedia}
-                    image="https://source.unsplash.com/random"
+                    image={info.pageImage.src}
                     title="Image title"
                   />
                   <CardContent className={classes.cardContent}>
                     <Typography gutterBottom variant="h5" component="h2">
-                      여긴 제목
+                      {info.pageName}
                     </Typography>
                     <Typography>
-                      여기에 글 나옴.
-                      정말?
-                      띄어쓰기 못하겠음
+                      {info.description}
                     </Typography>
                   </CardContent>
                   <CardActions>
