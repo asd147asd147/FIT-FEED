@@ -1,8 +1,8 @@
-import Album from "./Album";
+import Routes from './Routes'
 
 function App() {
   return (
-    <Album />
+    <Routes />
   );
 }
 

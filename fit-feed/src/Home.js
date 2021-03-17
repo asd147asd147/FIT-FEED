@@ -18,16 +18,13 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import Link from '@material-ui/core/Link';
 import facebook from "./facebook.json";
 
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
-      <Link color="inherit" href="#">
         FIT-FEED
-      </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
     </Typography>
@@ -73,7 +70,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Album() {
+export default function Home() {
   const classes = useStyles();
 
   return (
