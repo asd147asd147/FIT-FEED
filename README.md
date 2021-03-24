@@ -7,7 +7,7 @@
 
 # Developer
 * [최원준] - Fullstack
-* [안현주] - Fullstack
+* [안현주] - FrontEnd
 * [강승길] - Crawling
 
 # Requirements
