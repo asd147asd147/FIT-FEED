@@ -1,7 +1,10 @@
 const express = require('express');
+const cors = require('cors');
 const app = express();
 const PORT = process.env.PORT || 4000;
 const DB = require('./config/config');
+
+app.use(cors())
 
 app.get('/api/host',(req,res) => {
     res.send({host : 'host'});

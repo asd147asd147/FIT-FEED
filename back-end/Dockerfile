@@ -8,5 +8,6 @@ RUN npm install nodemon -g
 RUN npm install express
 RUN npm install mysql
 RUN npm install mysql2
+RUN npm install cors
 
 CMD ["npm", "start"]

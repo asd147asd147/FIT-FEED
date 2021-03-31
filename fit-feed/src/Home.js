@@ -67,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const __getTest = async() => {
-  const res = await axios.get('api/host');
+  const res = await axios.get('http://localhost:4000/api/USER_INFO');
   console.log(res);
 }
 
