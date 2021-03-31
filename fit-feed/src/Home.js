@@ -16,6 +16,8 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import facebook from "./facebook.json";
+import Head from "./Head"
+import axios from 'axios'
 
 function Copyright() {
   return (
@@ -64,11 +66,17 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const __getTest = async() => {
+  const res = await axios.get('api/host');
+  console.log(res);
+}
+
 export default function Home() {
   const classes = useStyles();
-
+  __getTest();
   return (
     <React.Fragment>
+      <Head />
       <CssBaseline />
       <main>
         {/* Hero unit */}

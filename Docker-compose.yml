@@ -1,0 +1,43 @@
+version: '3.7'
+
+services:
+  fit-feed:
+    container_name: fit-feed
+    build:
+      context: ./fit-feed/
+      dockerfile: Dockerfile
+    volumes:
+      - './fit-feed:/app'
+      - '/app/node_modules'
+    ports:
+      - '3001:3000'
+    environment:
+      - NODE_ENV=development
+      - CHOKIDAR_USEPOLLING=true
+
+  db:
+    container_name: mysql-db
+    build:
+      context: ./db-config/
+      dockerfile: Dockerfile
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    volumes:
+      - './db-config:/docker-entrypoint-initdb.d'
+    ports:
+      - '3306:3306'
+    environment:
+      MYSQL_DATABASE: FITFEED
+      MYSQL_PASSWORD: zxc258zxc258
+      MYSQL_ROOT_PASSWORD: zxc258zxc258
+
+  server:
+    container_name: server
+    build:
+      context: ./back-end/
+      dockerfile: Dockerfile
+    volumes:
+      - './back-end:/app'
+    ports:
+      - '4000:4000'
+    environment:
+      - CHOKIDAR_USEPOLLING=true
