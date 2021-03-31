@@ -29,7 +29,6 @@ $ npm install @material-ui/core
 Local Folder에서 clone 실행
 ```
 $ git clone https://github.com/asd147asd147/FIT-FEED.git
-$ cd fit-feed
 $ docker-compose up -d --build
 ```
 `localhost:3001` 접속
