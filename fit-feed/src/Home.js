@@ -66,14 +66,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const __getTest = async() => {
-  const res = await axios.get('http://localhost:4000/api/USER_INFO');
-  console.log(res);
-}
-
 export default function Home() {
   const classes = useStyles();
-  __getTest();
   return (
     <React.Fragment>
       <Head />
