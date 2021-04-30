@@ -17,7 +17,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import facebook from "./facebook.json";
 import Head from "./Head"
-import axios from 'axios'
 
 function Copyright() {
   return (
