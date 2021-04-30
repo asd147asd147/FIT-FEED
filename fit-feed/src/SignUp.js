@@ -12,12 +12,14 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import axios from 'axios';
 
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
         FIT-FEED
+      {' '}
       {new Date().getFullYear()}
       {'.'}
     </Typography>
@@ -44,9 +46,24 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const register = async(id,passwd,nickname) => {
+  const res = await axios.get('http://localhost:4000/api/REGISTER',{
+    params:{
+      id: id,
+      passwd: passwd,
+      nickname: nickname
+    }
+  });
+  console.log(res);
+}
+
+function handleSubmit(event) {
+  event.preventDefault();
+  register(event.target.id.value,event.target.password.value,event.target.name.value);
+}
+
 export default function SignUp() {
   const classes = useStyles();
-
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -57,7 +74,7 @@ export default function SignUp() {
         <Typography component="h1" variant="h5">
           FIT-FEED
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} noValidate onSubmit={handleSubmit}>
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <TextField
@@ -107,7 +124,7 @@ export default function SignUp() {
           <Grid container justify="flex-end">
             <Grid item>
               <Link href="#" variant="body2">
-                로그인하기
+                로그인 하러가기
               </Link>
             </Grid>
           </Grid>
