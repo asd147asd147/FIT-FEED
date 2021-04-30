@@ -42,19 +42,24 @@ const useStyles = makeStyles((theme) => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
+  overlap: {
+    height: '100%',
+  },
+  userID: {
+    error: false,
+  }
 }));
 
 const server = 'http://localhost:4000';
 
 const register = async(id,passwd,nickname) => {
-  const res = await axios.get(server + '/api/REGISTER',{
+  await axios.get(server + '/api/REGISTER',{
     params:{
       id: id,
       passwd: passwd,
       nickname: nickname
     }
   });
-  // console.log(res);
 }
 
 const valid_id = async(id) => {
@@ -64,6 +69,19 @@ const valid_id = async(id) => {
     }
   });
   return res;
+}
+
+const checkID = async(userID) => {
+  var ret = false;
+  await valid_id(userID).then((res) => {
+    if( res.data === 'invalid'){
+      ret = false;
+    }
+    else{
+      ret = true;
+    }
+  });
+  return ret;
 }
 
 function handleSubmit(event) {
@@ -79,6 +97,10 @@ function handleSubmit(event) {
 
 export default function SignUp() {
   const classes = useStyles();
+  var userID = useState("");
+  function changeID(e){
+    userID = e.target.value;
+  }
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -91,23 +113,32 @@ export default function SignUp() {
         </Typography>
         <form className={classes.form} noValidate onSubmit={handleSubmit}>
           <Grid container spacing={2}>
-            <Grid item xs={12}>
+            <Grid item xs={8}>
               <TextField
                 variant="outlined"
                 required
-                id="id"
                 fullWidth
+                id="id"
                 label="아이디"
                 name="id"
                 autoComplete="id"
+                className={classes.userID}
+                onChange={changeID}
               />
+            </Grid>
+            <Grid item xs={4}>
               <Button
                 type="button"
                 variant="contained"
-                fullWidth
                 color="primary"
+                fullWidth
                 className={classes.overlap}
-              >
+                onClick={() => {
+                  checkID(userID).then((res)=>{
+                    console.log(res)
+                  })
+                }}
+                >
                 중복확인
               </Button>
             </Grid>
@@ -132,7 +163,6 @@ export default function SignUp() {
                 fullWidth
                 id="name"
                 label="이름"
-                autoFocus
               />
             </Grid>
           </Grid>
