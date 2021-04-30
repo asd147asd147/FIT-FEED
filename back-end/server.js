@@ -10,7 +10,7 @@ app.get('/api/host',(req,res) => {
     res.send({host : 'host'});
 })
 
-app.get('/api/USER_INFO', (req,res) =>{
+app.get('/api/USER_INFO', (req,res) => {
     DB.query("SELECT * FROM FITFEED.USER_INFO;", (err, data) => {
         if(!err){
             res.send(data);
@@ -21,7 +21,7 @@ app.get('/api/USER_INFO', (req,res) =>{
     })
 })
 
-app.get('/api/REGISTER', (req,res) =>{
+app.get('/api/REGISTER', (req,res) => {
     console.log('Sign Up : ', req.query);
     DB.query("INSERT FITFEED.USER_INFO(`id`,`passwd`,`nickname`) VALUES ('"+req.query.id+"', '"+req.query.passwd+"','"+req.query.nickname+"');", (err, data) => {
         if(!err){
@@ -36,6 +36,20 @@ app.get('/api/REGISTER', (req,res) =>{
             }
         }
     })
+})
+
+app.get('/api/ID_CHECK',(req,res) => {
+    console.log('ID_Check : ', req.query);
+    DB.query("select EXISTS (select * from USER_INFO where id = '"+req.query.id+"') as success;", (err,data) => {
+        if(data[0].success){
+            res.send('invalid');
+        }
+        else{
+            res.send('valid');
+        }
+        console.log(data[0].success);
+    })
+
 })
 
 app.listen(PORT, () => {

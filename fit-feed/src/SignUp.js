@@ -3,8 +3,6 @@ import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
@@ -46,20 +44,41 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const server = 'http://localhost:4000';
+
 const register = async(id,passwd,nickname) => {
-  const res = await axios.get('http://localhost:4000/api/REGISTER',{
+  const res = await axios.get(server + '/api/REGISTER',{
     params:{
       id: id,
       passwd: passwd,
       nickname: nickname
     }
   });
-  console.log(res);
+  // console.log(res);
+}
+
+const valid_id = async(id) => {
+  const res = await axios.get(server + '/api/ID_CHECK',{
+    params:{
+      id: id,
+    }
+  });
+  return res;
 }
 
 function handleSubmit(event) {
   event.preventDefault();
-  register(event.target.id.value,event.target.password.value,event.target.name.value);
+  if(valid_id(event.target.id.value) === 'invalid'){
+    console.log(0);
+  }
+  else{
+    console.log(1);
+    register(event.target.id.value,event.target.password.value,event.target.name.value);
+  }
+}
+
+function handleChange(event){
+  console.log(event.target.value)
 }
 
 export default function SignUp() {
@@ -76,18 +95,6 @@ export default function SignUp() {
         </Typography>
         <form className={classes.form} noValidate onSubmit={handleSubmit}>
           <Grid container spacing={2}>
-            <Grid item xs={12}>
-              <TextField
-                autoComplete="name"
-                name="name"
-                variant="outlined"
-                required
-                fullWidth
-                id="name"
-                label="이름"
-                autoFocus
-              />
-            </Grid>
             <Grid item xs={12}>
               <TextField
                 variant="outlined"
@@ -109,6 +116,18 @@ export default function SignUp() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                autoComplete="name"
+                name="name"
+                variant="outlined"
+                required
+                fullWidth
+                id="name"
+                label="이름"
+                autoFocus
               />
             </Grid>
           </Grid>
