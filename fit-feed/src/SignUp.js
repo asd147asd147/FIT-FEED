@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -77,10 +77,6 @@ function handleSubmit(event) {
   }
 }
 
-function handleChange(event){
-  console.log(event.target.value)
-}
-
 export default function SignUp() {
   const classes = useStyles();
   return (
@@ -99,12 +95,21 @@ export default function SignUp() {
               <TextField
                 variant="outlined"
                 required
-                fullWidth
                 id="id"
+                fullWidth
                 label="아이디"
                 name="id"
                 autoComplete="id"
               />
+              <Button
+                type="button"
+                variant="contained"
+                fullWidth
+                color="primary"
+                className={classes.overlap}
+              >
+                중복확인
+              </Button>
             </Grid>
             <Grid item xs={12}>
               <TextField
