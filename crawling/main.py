@@ -26,7 +26,7 @@ if __name__ == "__main__":
     
     if not os.path.exists(userDataDir):
         try:
-            os.makedirs(os.path.dirname(userDataDir))
+            os.makedirs(userDataDir)
         except OSError as exc: # Guard against race condition
             if exc.errno != errno.EEXIST:
                 raise
