@@ -8,8 +8,8 @@ import json
 
 
 def facebook(email, password, dirs):
-    webdriverLocation = 'Chrome_90.0.4430.24_linux64\\chromedriver.exe'
-    # webdriverLocation = 'crawling\\Chrome_88.0.4324.96\\chromedriver.exe'
+    #webdriverLocation = 'Chrome_90.0.4430.24_linux64\\chromedriver.exe'
+    webdriverLocation = 'crawling\\Chrome_90.0.4430.24\\chromedriver.exe'
 
     options = webdriver.ChromeOptions()
     # options.add_argument('headless')
