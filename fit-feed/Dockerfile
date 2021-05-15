@@ -15,6 +15,7 @@ RUN npm install @material-ui/icons --silent
 RUN npm install react-scripts@3.4.1 -g --silent
 RUN npm install react-router-dom -g --silent
 RUN npm install http-proxy-middleware --silent
+RUN npm install react-facebook-login --silent
 
 # Start app
 CMD ["npm", "start"]

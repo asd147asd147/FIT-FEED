@@ -11,6 +11,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import axios from 'axios';
+import { Redirect } from 'react-router';
 
 function Copyright() {
   return (
@@ -85,22 +86,35 @@ const checkID = async(userID) => {
 }
 
 function handleSubmit(event) {
-  event.preventDefault();
-  if(valid_id(event.target.id.value) === 'invalid'){
-    console.log(0);
+  register(event.target.idvalue,event.target.password.value,event.target.name.value);
+}
+
+function helperTextID(userID, valid){
+  if(userID === ""){
+    return "";
+  }
+  else if(valid === false){
+    return "사용 할 수 없는 아이디 입니다.";
   }
   else{
-    console.log(1);
-    register(event.target.id.value,event.target.password.value,event.target.name.value);
+    return "사용 가능한 아이디 입니다.";
   }
+}
+
+function isEmpty(str){        
+  if(typeof str === "undefined" || str === null || str === "")
+      return true;
+  else
+      return false ;
 }
 
 export default function SignUp() {
   const classes = useStyles();
-  var userID = useState("");
-  function changeID(e){
-    userID = e.target.value;
-  }
+  var [userID, setuserID] = useState("");
+  var [userPassword, setuserPassword] = useState("");
+  var [userName, setuserName] = useState('');
+  var [IDhelper, setIDhelper] = useState("");
+  var [valid, setValid] = useState(false);
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -111,19 +125,25 @@ export default function SignUp() {
         <Typography component="h1" variant="h5">
           FIT-FEED
         </Typography>
-        <form className={classes.form} noValidate onSubmit={handleSubmit}>
+        <form className={classes.form} noValidate>
           <Grid container spacing={2}>
             <Grid item xs={8}>
               <TextField
                 variant="outlined"
                 required
                 fullWidth
+                error = {IDhelper !== "" ? !valid : false}
+                helperText = {IDhelper}
                 id="id"
                 label="아이디"
                 name="id"
                 autoComplete="id"
                 className={classes.userID}
-                onChange={changeID}
+                onChange={(e) => {
+                    setuserID({name : e.target.value})
+                    setValid(false)
+                    setIDhelper(helperTextID("", false))
+                  }}
               />
             </Grid>
             <Grid item xs={4}>
@@ -134,8 +154,9 @@ export default function SignUp() {
                 fullWidth
                 className={classes.overlap}
                 onClick={() => {
-                  checkID(userID).then((res)=>{
-                    console.log(res)
+                  checkID(userID.name).then((res)=>{
+                    setValid(res)
+                    setIDhelper(helperTextID(userID.name, res))
                   })
                 }}
                 >
@@ -152,6 +173,7 @@ export default function SignUp() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                onChange={e => setuserPassword({passwd : e.target.value})}
               />
             </Grid>
             <Grid item xs={12}>
@@ -163,21 +185,25 @@ export default function SignUp() {
                 fullWidth
                 id="name"
                 label="이름"
+                onChange={e => setuserName({name : e.target.value})}
               />
             </Grid>
           </Grid>
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-          >
-            회원가입
-          </Button>
+            <Button
+              type="button"
+              fullWidth
+              variant="contained"
+              color="primary"
+              disabled = {(valid && !isEmpty(userPassword.passwd) && !isEmpty(userName.name)) ? false : true}
+              className={classes.submit}
+              onClick={handleSubmit}
+              href="/"
+              >
+                회원가입
+            </Button>
           <Grid container justify="flex-end">
             <Grid item>
-              <Link href="#" variant="body2">
+              <Link href="/login" variant="body2">
                 로그인 하러가기
               </Link>
             </Grid>
