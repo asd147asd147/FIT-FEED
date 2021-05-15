@@ -1,5 +1,4 @@
-
-import React from 'react';
+import React, { useState } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -14,6 +13,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Facebook from './facebook'
+import axios from 'axios';
 
 function Copyright() {
   return (
@@ -58,8 +58,29 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const server = 'http://localhost:4000';
+
+const login = async(id,passwd) => {
+  const res = await axios.get(server + '/api/LOGIN',{
+    params:{
+      id: id,
+      passwd: passwd,
+    }
+  });
+  return res;
+}
+
+function isEmpty(str){        
+  if(typeof str === "undefined" || str === null || str === "")
+      return true;
+  else
+      return false ;
+}
+
 export default function SignIn() {
   const classes = useStyles();
+  var [userID, setuserID] = useState("");
+  var [userPassword, setuserPassword] = useState("");
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
@@ -82,6 +103,9 @@ export default function SignIn() {
               name="id"
               autoComplete="id"
               autoFocus
+              onChange={(e) => {
+                setuserID({name : e.target.value})
+              }}
             />
             <TextField
               variant="outlined"
@@ -93,17 +117,26 @@ export default function SignIn() {
               type="password"
               id="password"
               autoComplete="current-password"
+              onChange={(e) => {
+                setuserPassword({passwd : e.target.value})
+              }}
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="로그인 상태 유지"
             />
             <Button
-              type="submit"
+              type="button"
               fullWidth
               variant="contained"
               color="primary"
               className={classes.submit}
+              disabled = {!isEmpty(userID) && !isEmpty(userPassword) ? false : true}
+              onClick={() => {
+                login(userID.name,userPassword.passwd).then((res)=>{
+                  console.log(res)
+                })
+              }}
             >
               로그인
             </Button>
@@ -115,7 +148,7 @@ export default function SignIn() {
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link href="/signup" variant="body2">
                   {"회원가입"}
                 </Link>
               </Grid>

@@ -11,7 +11,6 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import axios from 'axios';
-import { Redirect } from 'react-router';
 
 function Copyright() {
   return (
@@ -85,8 +84,9 @@ const checkID = async(userID) => {
   return ret;
 }
 
-function handleSubmit(event) {
-  register(event.target.idvalue,event.target.password.value,event.target.name.value);
+function handleSubmit(id,passwd,name) {
+  // console.log(id,passwd,name)
+  register(id,passwd,name);
 }
 
 function helperTextID(userID, valid){
@@ -196,7 +196,7 @@ export default function SignUp() {
               color="primary"
               disabled = {(valid && !isEmpty(userPassword.passwd) && !isEmpty(userName.name)) ? false : true}
               className={classes.submit}
-              onClick={handleSubmit}
+              onClick={() => handleSubmit(userID.name, userPassword.passwd, userName.name)}
               href="/"
               >
                 회원가입

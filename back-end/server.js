@@ -52,6 +52,20 @@ app.get('/api/ID_CHECK',(req,res) => {
 
 })
 
+app.get('/api/LOGIN',(req,res) => {
+    console.log(req.query.id, req.query.passwd)
+    DB.query("select EXISTS (select * from USER_INFO where id = '"+req.query.id+"' and passwd = '"+req.query.passwd+"') as success;", (err,data) => {
+        if(data[0].success){
+            res.send('success');
+        }
+        else{
+            res.send('failed');
+        }
+        console.log(data[0].success);
+    })
+
+})
+
 app.listen(PORT, () => {
     console.log(`Server On : http://localhost:${PORT}/`);
 })
